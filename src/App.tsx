@@ -3,12 +3,15 @@ import { useState } from "react";
 import TaskInput from "./components/Task/TaskInput";
 import TaskList from "./components/Task/TaskList";
 import type { Task } from "./types/Task";
+import Header from "./components/Header";
+import Footer from "./components/Footer";
 
 type Filter = "all" | "completed" | "pending";
 
 const initialTasks: Task[] = [
   { id: 1, title: "Buy groceries", completed: false },
   { id: 2, title: "Read a book", completed: true },
+  { id: 3, title: "Complete Kuraz Internship assesment", completed: true },
 ];
 
 export default function App() {
@@ -43,19 +46,16 @@ export default function App() {
   });
 
   return (
-    <div className="min-h-screen bg-gray-100 flex items-center justify-center p-6">
-      <div className="w-full max-w-md bg-white p-6 rounded-lg shadow-lg">
-        <h1 className="text-2xl font-bold text-center mb-4">Task Manager</h1>
+    <div className="relative bg-gray-100 min-h-screen flex flex-col  font-poppins overflow-hidden">
+      <Header />
 
-        {/* Task input */}
+      <div className="w-3xl mx-auto mt-10">
         <TaskInput onAdd={addTask} />
-
-        {/* Filter buttons */}
         <div className="flex justify-center gap-2 my-4">
           <button
             onClick={() => setFilter("all")}
             className={`px-3 py-1 rounded ${
-              filter === "all" ? "bg-blue-500 text-white" : "bg-gray-200"
+              filter === "all" ? "bg-kuraz text-white" : "bg-gray-200"
             }`}
           >
             All
@@ -63,7 +63,7 @@ export default function App() {
           <button
             onClick={() => setFilter("pending")}
             className={`px-3 py-1 rounded ${
-              filter === "pending" ? "bg-blue-500 text-white" : "bg-gray-200"
+              filter === "pending" ? "bg-yellow-500 text-white" : "bg-gray-200"
             }`}
           >
             Pending
@@ -71,7 +71,7 @@ export default function App() {
           <button
             onClick={() => setFilter("completed")}
             className={`px-3 py-1 rounded ${
-              filter === "completed" ? "bg-blue-500 text-white" : "bg-gray-200"
+              filter === "completed" ? "bg-kuraz text-white" : "bg-gray-200"
             }`}
           >
             Completed
@@ -79,8 +79,16 @@ export default function App() {
         </div>
 
         {/* Task list */}
-        <TaskList tasks={filteredTasks} onToggle={toggleTask} onDelete={deleteTask} />
+        <TaskList
+          tasks={filteredTasks}
+          onToggle={toggleTask}
+          onDelete={deleteTask}
+        />
       </div>
+      <Footer />
+      <div className="bg-kuraz w-[800px] h-[200px] absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 blur-[100px] "></div>
+      <div className="bg-kuraz w-[200px] h-[1500px] absolute top-0 -left-20 rounded-full -translate-x-1/2 -translate-y-1/2 blur-[0px]"></div>
+      <div className="bg-kuraz w-[200px] h-[1500px] absolute top-0 -right-[17.5rem] rounded-full -translate-x-1/2 -translate-y-1/2 blur-[0px]"></div>
     </div>
   );
 }
