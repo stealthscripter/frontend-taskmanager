@@ -33,7 +33,7 @@ A simple task manager built with **React**, **Vite**, **TypeScript**, **Tailwind
 git clone https://github.com/stealthscripter/frontend-taskmanager.git
 cd frontend-taskmanager
 ```
-1. **Install dependencies**
+2. **Install dependencies**
 
 ```bash
 pnpm install
